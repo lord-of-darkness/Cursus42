@@ -1,38 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_show_error.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ionofrei <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/26 13:16:26 by ionofrei          #+#    #+#             */
-/*   Updated: 2016/11/26 15:54:56 by ionofrei         ###   ########.fr       */
+/*   Created: 2016/11/26 13:12:13 by ionofrei          #+#    #+#             */
+/*   Updated: 2016/11/26 15:44:53 by ionofrei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-int	main(int ac, char **av)
+void	ft_putchar(char c)
 {
-	t_list *pos;
+	write(1, &c, 1);
+}
 
-	if (ac != 2)
+void	ft_putstr(char *s)
+{
+	while (*s)
 	{
-		ft_putstr("NO file\n");
-		return (1);
+		ft_putchar(*s);
+		s++;
 	}
-	pos = (t_list*)malloc(sizeof(t_list));
-	ft_check_file(*(av + 1));
-	g_map_size = ft_check_size(g_tetr_count - 1);
-	while (1)
-	{
-		ft_initial_tetr(&(pos->tab), g_map_size);
-		if (ft_solve(pos, ft_next_tetr()))
-		{
-			ft_show_pos(pos->tab, g_map_size);
-			break ;
-		}
-		g_map_size++;
-	}
-	return (0);
+}
+
+void	ft_error(void)
+{
+	ft_putstr("error\n");
+	exit(0);
 }
